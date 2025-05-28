@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Dream Destination</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Universal box-sizing and font-family */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Body styling */
+    body {
+      background-color: #00796b; /* Dark teal background */
+      color: white; /* White text color */
+    }
+
+    /* Header styling */
+    header {
+      background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      position: absolute; /* Position header over the slider */
+      width: 100%;
+      z-index: 10; /* Ensure header is above other content */
+    }
+
+    /* Logo styling */
+    .logo {
+      flex: 1; /* Allows logo to take up available space */
+      font-size: 1.5rem; /* Larger font for logo */
+      font-weight: 700; /* Bold font weight */
+    }
+
+    /* Style for the link inside the logo */
+    .logo a {
+      text-decoration: none; /* Remove underline for the logo link */
+      color: white; /* Set color to white for the logo link */
+      transition: color 0.3s ease; /* Smooth color transition on hover */
+    }
+
+    .logo a:hover {
+      color: #00b6c2; /* Highlight color on hover, consistent with nav links */
+    }
+
+    /* Navigation styling */
+    nav {
+      flex: 2; /* Allows navigation to take more space */
+      display: flex;
+      justify-content: center; /* Center navigation links */
+      align-items: center;
+    }
+
+    /* Navigation link styling */
+    nav a {
+      margin: 0 1rem; /* Spacing between links */
+      text-decoration: none; /* Remove underline */
+      color: white; /* White link color */
+      font-weight: 500; /* Medium font weight */
+      transition: color 0.3s ease; /* Smooth color transition on hover */
+    }
+
+    nav a:hover {
+      color: #00b6c2; /* Highlight color on hover */
+    }
+
+    /* Hero slider container */
+    .hero-slider {
+      position: relative;
+      height: 100vh; /* Full viewport height */
+      overflow: hidden; /* Hide overflowing content */
+    }
+
+    /* Individual slide styling */
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-size: cover; /* Cover the entire area */
+      background-position: center; /* Center the background image */
+      animation: fade 15s infinite; /* Apply fade animation */
+      opacity: 0; /* Start with opacity 0 */
+      transition: opacity 1s ease-in-out; /* Smooth opacity transition */
+    }
+
+    /* Specific slide background images and animation delays */
+    .slide1 {
+      background-image: url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/d7/ef/23/caption.jpg?w=1200&h=-1&s=1');
+      animation-delay: 0s;
+    }
+
+    .slide2 {
+      background-image: url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/bf/4c/b1/photo5jpg.jpg?w=2000&h=-1&s=1');
+      animation-delay: 5s;
+    }
+
+    .slide3 {
+      background-image: url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/f7/55/47/kota-beach-resort.jpg?w=1200&h=-1&s=1');
+      animation-delay: 10s;
+    }
+
+    /* Keyframe animation for fading slides */
+    @keyframes fade {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      30% { opacity: 1; }
+      40% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* Hero content container */
+    .hero-content {
+      position: absolute;
+      top: 50%; /* Center vertically */
+      left: 50%; /* Center horizontally */
+      transform: translate(-50%, -50%); /* Adjust for exact centering */
+      z-index: 1; /* Ensure content is above slides */
+      text-align: center;
+      color: white;
+      padding: 20px; /* Add some padding */
+      width: 90%; /* Responsive width */
+      max-width: 800px; /* Max width for larger screens */
+    }
+
+    /* Hero section headings (h1, h2, h3) */
+    .hero h1 {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 5rem; /* Larger font size */
+      font-weight: 700; /* Bold font weight */
+      margin-bottom: 10px; /* Space below h1 */
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Text shadow for better readability */
+    }
+
+    .hero h2 {
+      font-size: 3.5rem; /* Large font size */
+      font-weight: 500;
+      color: white;
+      margin-top: 10px;
+      margin-bottom: 10px; /* Space below h2 */
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Text shadow for better readability */
+    }
+
+    .hero h3 {
+      font-size: 1.5rem; /* Medium font size */
+      font-weight: 300;
+      color: whitesmoke;
+      text-transform: uppercase;
+      margin-bottom: 20px; /* Space below h3 */
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Text shadow for better readability */
+    }
+
+    /* Hero paragraph */
+    .hero p {
+      margin: 5px;
+      font-size: 1.1rem; /* Readable font size */
+      color: white; /* Changed to white for better contrast */
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* Subtle text shadow for paragraph */
+    }
+
+    /* Cards container */
+    .cards {
+      display: flex;
+      gap: 1rem; /* Gap between cards */
+      margin-top: 2rem;
+      justify-content: center;
+      flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    }
+
+    /* Individual card styling */
+    .card {
+      background-color: white;
+      color: #333; /* Dark grey text */
+      border-radius: 10px;
+      overflow: hidden;
+      width: 250px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow to cards */
+      transition: transform 0.3s ease; /* Smooth transform on hover */
+    }
+
+    .card:hover {
+      transform: translateY(-5px); /* Lift card slightly on hover */
+    }
+
+    /* Card image styling */
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover; /* Cover image area */
+    }
+
+    /* Card body styling */
+    .card-body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Card body heading */
+    .card-body h4 {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Card button styling */
+    .card-body button {
+      margin-top: 1rem;
+      background-color: #00b6c2; /* Teal button color */
+      color: black;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease; /* Smooth background transition */
+    }
+
+    .card-body button:hover {
+      background-color: #008c99; /* Darker teal on hover */
+    }
+
+    /* Keyframe for background slide animation (not currently used in this layout) */
+    @keyframes slideBackground {
+      0% { background-position: 0% 50%; }
+      100% { background-position: -100% 50%; }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 1rem;
+        align-items: flex-start; /* Align header items to start on small screens */
+      }
+
+      .logo {
+        margin-bottom: 0.5rem; /* Add space below logo on small screens */
+        font-size: 1.2rem; /* Adjust font size for smaller screens */
+      }
+
+      nav {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: flex-start; /* Align nav links to start on small screens */
+      }
+
+      nav a {
+        margin: 0.5rem;
+      }
+
+      .hero h1 {
+        font-size: 3rem; /* Adjust font size for smaller screens */
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .hero h3 {
+        font-size: 1.2rem;
+      }
+
+      .hero p {
+        font-size: 0.9rem;
+      }
+
+      .hero-content {
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero h2 {
+        font-size: 1.8rem;
+      }
+
+      .hero h3 {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo"> <a href="FRONT.html">Tour De Sebo</a></div>
+    <nav>
+      <a href="top.html">Destination</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </header>
+
+  <section class="hero-slider">
+    <div class="slide slide1"></div>
+    <div class="slide slide2"></div>
+    <div class="slide slide3"></div>
+    <div class="hero-content">
+      <section class="hero">
+        <h1>EXPLORE</h1>
+        <h2>DREAM</h2>
+        <h3>DESTINATION</h3>
+        <p>Embark on an unforgettable journey to breathtaking destinations. Discover pristine beaches, majestic mountains, and vibrant cities, all waiting to be explored. Let us guide you to your perfect escape.</p>
+      </section>
+    </div>
+  </section>
+
+</body>
+</html>
